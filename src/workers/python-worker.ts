@@ -17,10 +17,6 @@ interface Pyodide {
   isPyProxy: (value: unknown) => boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerJsModule: any
-  loadedPackages: {
-    [key: string]: string
-  }
-  loadPackagesFromImports: (code: string) => Promise<void>
 }
 
 interface micropip {
@@ -41,9 +37,9 @@ declare global {
 // Monkey patch console.log to prevent the script from outputting logs
 if (self.location.hostname !== 'localhost') {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  console.log = () => { }
+  console.log = () => {}
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  console.error = () => { }
+  console.error = () => {}
 }
 
 import { expose } from 'comlink'
@@ -114,18 +110,6 @@ sys.stdin.readline = lambda: react_py.getInput("${id}", __prompt_str__)
   },
   async run(code: string) {
     await self.pyodide.runPythonAsync(code)
-  },
-  async addPackages(packages: string[]) {
-    const micropip = self.pyodide.pyimport('micropip')
-    await micropip.install(packages)
-  },
-  loadedPackages() {
-
-    return self.pyodide.loadedPackages
-  },
-  async loadPackagesFromImports(code: string) {
-    await self.pyodide.loadPackagesFromImports(code)
-
   },
   readFile(name: string) {
     return self.pyodide.FS.readFile(name, { encoding: 'utf8' })

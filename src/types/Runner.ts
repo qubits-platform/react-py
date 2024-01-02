@@ -21,11 +21,6 @@ export interface Runner {
 
 export interface PythonRunner extends Runner {
   run: (code: string) => Promise<void>
-  addPackages: (packages: string[]) => Promise<void>
-  loadedPackages: () => {
-    [key: string]: string
-  }
-  loadPackagesFromImports: (code: string) => Promise<void>
 }
 
 export interface PythonConsoleRunner extends Runner {

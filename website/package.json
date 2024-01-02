@@ -26,9 +26,9 @@
     "clsx": "^1.2.1",
     "postcss": "^8.4.31",
     "prism-react-renderer": "^1.3.5",
-    "react": "^18.3.0-canary-c5b937576-20231219",
+    "react": "^17.0.2",
     "react-ace": "^10.1.0",
-    "react-dom": "^18.3.0-canary-c5b937576-20231219",
+    "react-dom": "^17.0.2",
     "react-py": "file:..",
     "tailwindcss": "^3.1.8"
   },
