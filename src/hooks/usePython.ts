@@ -259,6 +259,19 @@ del sys
     sendInput(runnerId, value)
   }
 
+  const addPackages = async (packages: string[]) => {
+    await runnerRef.current?.addPackages(packages)
+  }
+
+  const loadedPackages = () => {
+    return runnerRef.current?.loadedPackages()
+  }
+
+  const loadPackagesFromImports = async (code: string) => {
+    await runnerRef.current?.loadPackagesFromImports(code)
+  }
+
+
   return {
     runPython,
     stdout,
@@ -275,6 +288,9 @@ del sys
     unwatchModules,
     isAwaitingInput,
     sendInput: sendUserInput,
-    prompt: runnerId ? getPrompt(runnerId) : ''
+    prompt: runnerId ? getPrompt(runnerId) : '',
+    addPackages,
+    loadedPackages,
+    loadPackagesFromImports,
   }
 }
