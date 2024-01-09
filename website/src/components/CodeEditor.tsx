@@ -49,12 +49,16 @@ export default function CodeEditor(props: CodeEditorProps) {
     interruptExecution,
     isAwaitingInput,
     sendInput,
-    prompt
+    prompt,
+    addPackages,
+    loadedPackages,
+    loadPackagesFromImports
   } = usePython({ packages })
 
   function run() {
     runPython(input)
     setShowOutput(true)
+    loadPackagesFromImports(input)
   }
 
   function stop() {
